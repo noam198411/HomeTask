@@ -68,12 +68,12 @@ namespace TestSection
 
                 var apiTidl = new APIHelper();
                 var res = await apiTidl.DeleteAllPlaylists();
-                Assert.AreEqual(0, res.TotalNumberOfItems);
+                Assert.AreEqual(0, res.TotalNumberOfItems,"Not all playlists were deleted.");
 
                 string playlistExpected = "Playlist " + ExtensionCommonFunc.GetRandomNumber();
                 var playlistActual = await apiTidl.CreateUserPlay(playlistExpected);
                 var allplaylists = await apiTidl.GetUserPlaylists();
-                Assert.AreEqual(1, allplaylists.Items.Count());
+                Assert.AreEqual(1, allplaylists.Items.Count(),"Suppose to be only one user but actualy it's not.");
                 Logger.Log($"Test {nameof(VerifyPlaylistDelete)} Finished", "API Tests");
             }
         }
